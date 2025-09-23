@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobSeeker - Feed</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f2ef;
+    }
+
+    /* Navbar */
+    header {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-search img {
+      height: 35px;
+    }
+    .logo-search input {
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 220px;
+    }
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-icons div {
+      text-align: center;
+      cursor: pointer;
+      color: #666;
+      font-size: 14px;
+    }
+    .nav-icons i {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    /* Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 20% 55% 25%;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Sidebar Left */
+    .sidebar {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .sidebar img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .sidebar h3 {
+      margin: 10px 0 5px;
+    }
+    .sidebar p {
+      font-size: 13px;
+      color: #555;
+      margin: 4px 0;
+    }
+
+    /* Feed */
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .post-box, .post {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .post-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+    .post {
+      padding-bottom: 10px;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .post-header img {
+      width: 40px;
+      border-radius: 50%;
+    }
+    .post-header div {
+      font-size: 13px;
+    }
+    .post-content {
+      margin: 10px 0;
+    }
+    .post img {
+      width: 100%;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .post-actions {
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+    .post-actions div {
+      cursor: pointer;
+    }
+
+    /* Right Sidebar */
+    .rightbar {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .rightbar h4 {
+      margin-bottom: 10px;
+    }
+    .rightbar p {
+      font-size: 13px;
+      margin: 5px 0;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo-search">
+      <img src="https://static.vecteezy.com/system/resources/previews/008/688/110/non_2x/job-search-logo-free-vector.jpg" alt="Logo">
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="nav-icons">
+      <div><i class="fa fa-home"></i>Home</div>
+      <div><i class="fa fa-user-friends"></i>Network</div>
+      <div><i class="fa fa-briefcase"></i>Jobs</div>
+      <div><i class="fa fa-comment"></i>Messaging</div>
+      <div><i class="fa fa-bell"></i>Notifications</div>
+      <div><i class="fa fa-user"></i>Me</div>
+    </div>
+  </header>
+
+  <!-- Page Layout -->
+  <div class="container">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+      <img src="C:\Users\nil\Downloads\1669611447434.jpeg" 
+     alt="Banner" 
+     style="width:90px; height:90px; border-radius:800%; object-fit:cover;">
+
+      <h3>Vinod Reddy</h3>
+      <p>Freelance SEO, Content Writer</p>
+      <p>Bengaluru, India</p>
+      <hr>
+      <p><strong>Profile views:</strong> 6</p>
+      <p><strong>Connections:</strong> 150+</p>
+      <p>Saved items</p>
+    </div>
+
+    <!-- Feed -->
+    <div class="feed">
+      <div class="post-box">
+        <p>Start a post</p>
+        <input type="text" placeholder="Write something...">
+      </div>
+
+      <div class="post">
+        <div class="post-header">
+          <img src="C:\Users\nil\Downloads\istockphoto-1399788030-612x612.jpg" 
+     alt="User" 
+     style="width:40px; height:40px; border-radius:50%;">
+
+          <div>
+            <strong>Sugandha D P</strong><br>
+            <span>Software Web Developer</span>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>The knowledge and experience gained will be applied to the continued journey in web development 🚀</p>
+          <img src="C:\Users\nil\Downloads\1755408128381.jpeg" alt="Post Image">
+        </div>
+        <div class="post-actions">
+          <div><i class="fa fa-thumbs-up"></i> Like</div>
+          <div><i class="fa fa-comment"></i> Comment</div>
+          <div><i class="fa fa-share"></i> Share</div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-header">
+          <img src="C:\Users\nil\Downloads\1753154057518.jpeg" 
+     alt="User" 
+     style="width:40px; height:40px; border-radius:50%;">
+
+          <div>
+            <strong>Ankitha</strong><br>
+            <span>Data Analyst at DataWorks</span>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>🎉Excited to share!🎉
+I have successfully completed my Data Science Internship with AiVariant! 
+During this internship, I worked on building an Online Course Recommendation System using Streamlit, leveraging Python, Pandas, and Machine Learning techniques to improve recommendation .
+Key highlights:
+*Implemented content-based filtering with cosine similarity for personalized course suggestions.
+*Developed an interactive dashboard with search and filter features to improve user engagement.
+*Collaborated on end-to-end project deployment in a real-world setting.
+A big thank you to my mentors and peers at AiVariant for their guidance and support throughout this journey. 🙏
+hashtag#DataScience hashtag#MachineLearning hashtag#Streamlit hashtag#Python hashtag#Internship hashtag#RecommendationSystem hashtag#CareerGrowth</p>
+          <img src="C:\Users\nil\Downloads\1755258895391.jpeg" alt="Offer Letter">
+        </div>
+        <div class="post-actions">
+          <div><i class="fa fa-thumbs-up"></i> Like</div>
+          <div><i class="fa fa-comment"></i> Comment</div>
+          <div><i class="fa fa-share"></i> Share</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="rightbar">
+      <h4>JobSeeker News</h4>
+      <p>🚀 Degree or skills — which matters more?</p>
+      <p>🏢 Hero MotoCorp names new CEO</p>
+      <p>🌍 Japan PM steps down</p>
+      <p>💰 Bank profits slow down</p>
+    </div>
+  </div>
+</body>
+</html>
