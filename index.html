@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobSeeker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0a66c2;
+      padding: 15px 30px;
+      color: #fff;
+    }
+
+    header img {
+      height: 40px;
+      border-radius: 5px;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header button {
+      background: #fff;
+      color: #0a66c2;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background: #e6f0fa;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: url("https://img.freepik.com/free-photo/modern-business-center_1127-3152.jpg") no-repeat center/cover;
+      color: white;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero h2, .hero p, .hero a {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero a {
+      background: #ffcc00;
+      color: #333;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .hero a:hover {
+      background: #ffc107;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      margin-top: -30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 250px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      background: #0a66c2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Jobs Section */
+    .jobs {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .jobs h3 {
+      color: #0a66c2;
+      margin-bottom: 20px;
+    }
+
+    .job-card {
+      background: #fff;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background: #0a66c2;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #ffcc00;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <img src="https://static.vecteezy.com/system/resources/previews/008/688/110/non_2x/job-search-logo-free-vector.jpg" alt="Logo">
+      <h1>JobSeeker</h1>
+    </div>
+    <a href="registration.html"><button>Login / Signup</button></a>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h2>Find Your Dream Job</h2>
+    <p>Search from thousands of opportunities and connect with top companies around the world.</p>
+    <a href="registration.html">Get Started</a>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" placeholder="Job Title or Keyword">
+    <input type="text" placeholder="Location">
+    <button onclick="redirectToSignup()">Search</button>
+  </div>
+
+  <!-- Latest Jobs -->
+  <div class="jobs">
+    <h3>Latest Job Listings</h3>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;">
+
+      <!-- Job 1 -->
+      <div class="job-card">
+        <h4>Frontend Developer</h4>
+        <p>🏢 TechSoft Pvt Ltd <span style="color:#0a66c2;font-size:14px;">✔ Verified</span></p>
+        <p>📍 Bengaluru, India</p>
+        <p>💰 ₹6-10 LPA | ⏳ Full-Time</p>
+        <p style="font-size:14px;color:#555;">
+          We are looking for a skilled frontend developer with strong knowledge in
+          HTML, CSS, JavaScript, and React. You will collaborate with designers and backend
+          developers to build seamless web applications.
+        </p>
+        <button onclick="redirectToSignup()">Apply Now</button>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="job-card">
+        <h4>Data Analyst</h4>
+        <p>🏢 DataWorks <span style="color:#0a66c2;font-size:14px;">✔ Verified</span></p>
+        <p>📍 Hyderabad, India</p>
+        <p>💰 ₹5-8 LPA | ⏳ Full-Time</p>
+        <p style="font-size:14px;color:#555;">
+          Analyze business data to provide insights and strategies for growth.
+          Proficiency in SQL, Python, and visualization tools like Power BI is required.
+        </p>
+        <button onclick="redirectToSignup()">Apply Now</button>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="job-card">
+        <h4>UI/UX Designer</h4>
+        <p>🏢 Creative Minds <span style="color:#0a66c2;font-size:14px;">✔ Verified</span></p>
+        <p>🌍 Remote</p>
+        <p>💰 ₹4-7 LPA | ⏳ Contract</p>
+        <p style="font-size:14px;color:#555;">
+          Join our creative team to design modern, intuitive user interfaces.
+          Experience with Figma and Adobe XD is essential. Remote work flexibility provided.
+        </p>
+        <button onclick="redirectToSignup()">Apply Now</button>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="job-card">
+        <h4>Software Engineer</h4>
+        <p>🏢 Infosys <span style="color:#0a66c2;font-size:14px;">✔ Verified</span></p>
+        <p>📍 Pune, India</p>
+        <p>💰 ₹7-12 LPA | ⏳ Full-Time</p>
+        <p style="font-size:14px;color:#555;">
+          Work on large-scale enterprise projects with a global client base.
+          Strong skills in Java, Spring Boot, and microservices are required.
+        </p>
+        <button onclick="redirectToSignup()">Apply Now</button>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="job-card">
+        <h4>Cloud Architect</h4>
+        <p>🏢 Amazon Web Services <span style="color:#0a66c2;font-size:14px;">✔ Verified</span></p>
+        <p>📍 Bengaluru, India</p>
+        <p>💰 ₹18-25 LPA | ⏳ Full-Time</p>
+        <p style="font-size:14px;color:#555;">
+          Design and manage cloud solutions for enterprise clients. Must have expertise
+          in AWS cloud services, DevOps practices, and security compliance.
+        </p>
+        <button onclick="redirectToSignup()">Apply Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 JobSeeker Hub | Designed with ❤️</p>
+    <div>
+      <a href="#">About</a> | 
+      <a href="#">Careers</a> | 
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    function redirectToSignup() {
+      window.location.href = "registration.html";
+    }
+  </script>
+</body>
+</html>
