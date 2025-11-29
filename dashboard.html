@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JobSeeker - Feed</title>
+  <title>JobSeeker - Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f3f2ef;
+      color: #333;
     }
 
     /* Navbar */
     header {
-      background: white;
+      background: linear-gradient(90deg, #0077b5, #00a6a6);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 16px;
-      border-bottom: 1px solid #ddd;
+      padding: 10px 16px;
       position: sticky;
       top: 0;
       z-index: 100;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .logo-search {
       display: flex;
@@ -31,22 +33,30 @@
     }
     .logo-search img {
       height: 35px;
+      border-radius: 5px;
     }
     .logo-search input {
-      padding: 6px 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
       width: 220px;
+      background: rgba(255,255,255,0.9);
     }
     .nav-icons {
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
     .nav-icons div {
       text-align: center;
       cursor: pointer;
-      color: #666;
       font-size: 14px;
+      transition: 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .nav-icons div:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
     }
     .nav-icons i {
       display: block;
@@ -60,28 +70,46 @@
       grid-template-columns: 20% 55% 25%;
       gap: 20px;
       padding: 20px;
-      max-width: 1200px;
+      max-width: 1300px;
       margin: auto;
     }
 
-    /* Sidebar Left */
-    .sidebar {
+    /* Sidebar */
+    .sidebar, .rightbar {
       background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
     }
     .sidebar img {
-      width: 100%;
-      border-radius: 8px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0077b5;
+      margin-bottom: 15px;
     }
     .sidebar h3 {
-      margin: 10px 0 5px;
+      margin: 0 0 5px;
+      color: #333;
     }
     .sidebar p {
-      font-size: 13px;
-      color: #555;
-      margin: 4px 0;
+      margin: 5px 0;
+      color: #666;
+      font-size: 14px;
+    }
+    .sidebar hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 15px 0;
+    }
+    .sidebar p strong {
+      color: #333;
     }
 
     /* Feed */
@@ -92,38 +120,48 @@
     }
     .post-box, .post {
       background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .post-box:hover, .post:hover {
+      transform: translateY(-3px);
     }
     .post-box input {
       width: 100%;
-      padding: 10px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      margin-top: 5px;
-    }
-    .post {
-      padding-bottom: 10px;
+      padding: 12px 15px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+      font-size: 14px;
     }
     .post-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .post-header img {
-      width: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
+      object-fit: cover;
     }
-    .post-header div {
-      font-size: 13px;
+    .post-header div strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+    .post-header div span {
+      font-size: 14px;
+      color: #666;
     }
     .post-content {
-      margin: 10px 0;
+      margin: 15px 0;
+      line-height: 1.5;
     }
     .post img {
       width: 100%;
-      border-radius: 5px;
+      border-radius: 8px;
       margin-top: 10px;
     }
     .post-actions {
@@ -131,26 +169,187 @@
       justify-content: space-around;
       font-size: 14px;
       color: #666;
-      margin-top: 10px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
     }
     .post-actions div {
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .post-actions div:hover {
+      background: #f3f2ef;
     }
 
-    /* Right Sidebar */
-    .rightbar {
-      background: white;
+    /* Section Styling */
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0077b5;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    .connection, .job, .chat, .notification {
       padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      background: #f9f9f9;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .connection:hover, .job:hover, .chat:hover, .notification:hover {
+      background: #e8f5ff;
+      transform: translateX(5px);
+    }
+    .connection img, .chat img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .job img {
+      width: 60px;
+      height: 60px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+    .connection-content, .job-content, .chat-content, .notification-content {
+      flex: 1;
+    }
+    .connection-content strong, .job-content strong, .chat-content strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .connection-content span, .job-content span, .chat-content span {
+      font-size: 14px;
+      color: #666;
+    }
+    .notification-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .notification-icon {
+      font-size: 20px;
+      color: #0077b5;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 18px;
+      margin: 10px 5px 0 0;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      background: #0077b5;
+      color: white;
+      transition: all 0.3s;
+    }
+    .button:hover {
+      background: #005f8c;
+      transform: translateY(-2px);
+    }
+    .button-outline {
+      background: transparent;
+      border: 1px solid #0077b5;
+      color: #0077b5;
+    }
+    .button-outline:hover {
+      background: #f3f2ef;
     }
     .rightbar h4 {
-      margin-bottom: 10px;
+      color: #0077b5;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
     }
     .rightbar p {
+      margin: 12px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .rightbar p:hover {
+      color: #0077b5;
+    }
+    .profile-stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+    }
+    .profile-stat {
+      text-align: center;
+    }
+    .profile-stat strong {
+      display: block;
+      font-size: 18px;
+      color: #0077b5;
+    }
+    .profile-stat span {
+      font-size: 12px;
+      color: #666;
+    }
+    .profile-actions {
+      margin-top: 15px;
+    }
+    .profile-actions button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .job-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .job-meta span {
       font-size: 13px;
-      margin: 5px 0;
-      color: #444;
+      color: #666;
+    }
+    .job-meta .salary {
+      color: #0077b5;
+      font-weight: 500;
+    }
+    .chat-meta {
+      font-size: 12px;
+      color: #999;
+      text-align: right;
+    }
+    .notification-meta {
+      font-size: 12px;
+      color: #999;
+    }
+    .security-section {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    .security-section h4 {
+      color: #0077b5;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .security-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .security-status i {
+      color: #4caf50;
+    }
+    .security-status span {
+      font-size: 14px;
     }
   </style>
 </head>
@@ -159,15 +358,15 @@
   <header>
     <div class="logo-search">
       <img src="https://static.vecteezy.com/system/resources/previews/008/688/110/non_2x/job-search-logo-free-vector.jpg" alt="Logo">
-      <input type="text" placeholder="Search">
+      <input type="text" placeholder="Search jobs, people, and more...">
     </div>
     <div class="nav-icons">
-      <div><i class="fa fa-home"></i>Home</div>
-      <div><i class="fa fa-user-friends"></i>Network</div>
-      <div><i class="fa fa-briefcase"></i>Jobs</div>
-      <div><i class="fa fa-comment"></i>Messaging</div>
-      <div><i class="fa fa-bell"></i>Notifications</div>
-      <div><i class="fa fa-user"></i>Me</div>
+      <div onclick="showSection('home')"><i class="fa fa-home"></i>Home</div>
+      <div onclick="showSection('network')"><i class="fa fa-user-friends"></i>Network</div>
+      <div onclick="showSection('jobs')"><i class="fa fa-briefcase"></i>Jobs</div>
+      <div onclick="showSection('messaging')"><i class="fa fa-comment"></i>Messaging</div>
+      <div onclick="showSection('notifications')"><i class="fa fa-bell"></i>Notifications</div>
+      <div onclick="showSection('me')"><i class="fa fa-user"></i>Me</div>
     </div>
   </header>
 
@@ -175,40 +374,66 @@
   <div class="container">
     <!-- Left Sidebar -->
     <div class="sidebar">
-      <img src="C:\Users\nil\Downloads\1669611447434.jpeg" 
-     alt="Banner" 
-     style="width:90px; height:90px; border-radius:800%; object-fit:cover;">
-
+      <img src="C:\Users\nil\Downloads\1669611447434.jpeg" alt="Profile">
       <h3>Vinod Reddy</h3>
       <p>Freelance SEO, Content Writer</p>
       <p>Bengaluru, India</p>
+      
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <strong>156</strong>
+          <span>Connections</span>
+        </div>
+        <div class="profile-stat">
+          <strong>42</strong>
+          <span>Profile Views</span>
+        </div>
+      </div>
+      
       <hr>
-      <p><strong>Profile views:</strong> 6</p>
-      <p><strong>Connections:</strong> 150+</p>
-      <p>Saved items</p>
+      
+      <div class="profile-actions">
+        <button class="button">View Profile</button>
+        <button class="button button-outline">Edit Profile</button>
+      </div>
+      
+      <hr>
+      
+      <div class="security-section">
+        <h4>Account Security</h4>
+        <div class="security-status">
+          <i class="fa fa-shield-alt"></i>
+          <span>Two-factor authentication</span>
+        </div>
+        <button class="button button-outline" onclick="window.location.href='verification.html'">Manage 2FA</button>
+      </div>
+      
+      <hr>
+      
+      <p><strong>Saved items</strong></p>
+      <p><strong>Groups</strong></p>
+      <p><strong>Events</strong></p>
     </div>
 
-    <!-- Feed -->
-    <div class="feed">
+    <!-- Middle Feed (Dynamic) -->
+    <div id="feed" class="feed">
+      <!-- Default: Home content -->
       <div class="post-box">
         <p>Start a post</p>
-        <input type="text" placeholder="Write something...">
+        <input type="text" placeholder="Share your thoughts...">
       </div>
 
       <div class="post">
         <div class="post-header">
-          <img src="C:\Users\nil\Downloads\istockphoto-1399788030-612x612.jpg" 
-     alt="User" 
-     style="width:40px; height:40px; border-radius:50%;">
-
+          <img src="C:\Users\nil\Downloads\istockphoto-1399788030-612x612.jpg" alt="User" style="width:40px; height:40px; border-radius:50%;">
           <div>
-            <strong>Sugandha D P</strong><br>
-            <span>Software Web Developer</span>
+            <strong>Sugandha D P</strong>
+            <span>Software Web Developer at TechSolutions</span>
           </div>
         </div>
         <div class="post-content">
-          <p>The knowledge and experience gained will be applied to the continued journey in web development 🚀</p>
-          <img src="C:\Users\nil\Downloads\1755408128381.jpeg" alt="Post Image">
+          <p>The knowledge and experience gained will be applied to the continued journey in web development 🚀 Just completed my certification in React and Node.js. Looking forward to applying these skills in real-world projects!</p>
+          <img src="https://media.licdn.com/dms/image/v2/D4D22AQEGQ1cyrfpHTw/feedshare-shrink_2048_1536/B4DZReh3KJHUAo-/0/1736752729826?e=2147483647&v=beta&t=CrGfxOjGEYUvOEiP6aEUwIpk9gQrdx41qh3cIsHUqr4" alt="Post Image">
         </div>
         <div class="post-actions">
           <div><i class="fa fa-thumbs-up"></i> Like</div>
@@ -219,26 +444,15 @@
 
       <div class="post">
         <div class="post-header">
-          <img src="C:\Users\nil\Downloads\1753154057518.jpeg" 
-     alt="User" 
-     style="width:40px; height:40px; border-radius:50%;">
-
+          <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="User" style="width:40px; height:40px; border-radius:50%;">
           <div>
-            <strong>Ankitha</strong><br>
+            <strong>Aakashsini Sharma</strong>
             <span>Data Analyst at DataWorks</span>
           </div>
         </div>
         <div class="post-content">
-          <p>🎉Excited to share!🎉
-I have successfully completed my Data Science Internship with AiVariant! 
-During this internship, I worked on building an Online Course Recommendation System using Streamlit, leveraging Python, Pandas, and Machine Learning techniques to improve recommendation .
-Key highlights:
-*Implemented content-based filtering with cosine similarity for personalized course suggestions.
-*Developed an interactive dashboard with search and filter features to improve user engagement.
-*Collaborated on end-to-end project deployment in a real-world setting.
-A big thank you to my mentors and peers at AiVariant for their guidance and support throughout this journey. 🙏
-hashtag#DataScience hashtag#MachineLearning hashtag#Streamlit hashtag#Python hashtag#Internship hashtag#RecommendationSystem hashtag#CareerGrowth</p>
-          <img src="C:\Users\nil\Downloads\1755258895391.jpeg" alt="Offer Letter">
+          <p>🎉Excited to share!🎉 I have successfully completed my Data Science Internship at DataWorks. Grateful for the opportunity to work with amazing mentors and contribute to meaningful projects. Ready to take on new challenges in the data science field!</p>
+          <img src="https://training-comp-uploads.internshala.com/signup_page_media/data-science-sample-certificate.png?v=4&v=v4" alt="Offer Letter">
         </div>
         <div class="post-actions">
           <div><i class="fa fa-thumbs-up"></i> Like</div>
@@ -251,11 +465,238 @@ hashtag#DataScience hashtag#MachineLearning hashtag#Streamlit hashtag#Python has
     <!-- Right Sidebar -->
     <div class="rightbar">
       <h4>JobSeeker News</h4>
-      <p>🚀 Degree or skills — which matters more?</p>
-      <p>🏢 Hero MotoCorp names new CEO</p>
-      <p>🌍 Japan PM steps down</p>
-      <p>💰 Bank profits slow down</p>
+      <p>🚀 Degree or skills — which matters more in today's job market?</p>
+      <p>🏢 Hero MotoCorp names new CEO as part of leadership restructuring</p>
+      <p>🌍 Japan PM steps down, triggering election process</p>
+      <p>💰 Bank profits slow down amid global economic uncertainty</p>
+      <p>📈 Tech sector sees 12% growth in job openings this quarter</p>
+      <p>🏡 Remote work opportunities increase by 30% post-pandemic</p>
     </div>
   </div>
+
+  <!-- JS Section Switching -->
+  <script>
+    // Sample data for different sections
+    const firstNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Casey', 'Riley', 'Avery', 'Quinn', 'Sage', 'Drew', 'Jamie', 'Blake', 'Cameron', 'Dakota', 'Emerson', 'Finley', 'Grayson', 'Harper', 'Kendall', 'Logan'];
+    const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin'];
+    const companies = ['TechCorp', 'DataWorks', 'InnovateX', 'CloudTech', 'WebSolutions', 'Digital Dynamics', 'FutureTech', 'CodeCraft', 'ByteBurst', 'NexusSoft', 'CyberCore', 'InfoTech', 'DevHub', 'AppVentures', 'PixelPerfect', 'Streamline', 'NextGen', 'TechFusion', 'DataFlow', 'CloudNine'];
+    const jobTitles = ['Software Engineer', 'Data Scientist', 'Product Manager', 'UX Designer', 'DevOps Engineer', 'Full Stack Developer', 'Frontend Developer', 'Backend Developer', 'Data Analyst', 'Business Analyst', 'Project Manager', 'Marketing Manager', 'Sales Manager', 'HR Manager', 'Finance Manager', 'Operations Manager', 'Customer Success Manager', 'Account Manager', 'Business Development Manager', 'Product Marketing Manager'];
+    const locations = ['New York, NY', 'San Francisco, CA', 'Austin, TX', 'Seattle, WA', 'Boston, MA', 'Chicago, IL', 'Denver, CO', 'Atlanta, GA', 'Los Angeles, CA', 'Miami, FL', 'Washington, DC', 'Portland, OR', 'Nashville, TN', 'Phoenix, AZ', 'Dallas, TX', 'Houston, TX', 'San Diego, CA', 'Minneapolis, MN', 'Philadelphia, PA', 'Detroit, MI'];
+    const jobTypes = ['Full-time', 'Part-time', 'Contract', 'Internship', 'Remote'];
+    const notificationTypes = [
+      { icon: 'fa-briefcase', text: 'New job posting at' },
+      { icon: 'fa-user-plus', text: 'You have a new connection request from' },
+      { icon: 'fa-calendar', text: 'Reminder: Interview with' },
+      { icon: 'fa-comment', text: 'New message from' },
+      { icon: 'fa-thumbs-up', text: 'Your post was liked by' },
+      { icon: 'fa-share', text: 'Your post was shared by' }
+    ];
+    const messagePreviews = [
+      'Hi, I saw your profile and would like to connect...',
+      'Are you available for a quick call tomorrow?',
+      'Thank you for your application. We\'d like to schedule an interview...',
+      'I wanted to follow up on our conversation last week...',
+      'Your profile looks great! Would you be interested in...',
+      'Let me know if you have any questions about the position...',
+      'I\'m reaching out regarding the job opportunity...',
+      'Would you be available for a chat next week?',
+      'Thanks for connecting! I\'d love to learn more about...',
+      'I have an exciting opportunity that might be a good fit...'
+    ];
+
+    // Generate random name
+    function getRandomName() {
+      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      return `${firstName} ${lastName}`;
+    }
+
+    // Generate random job
+    function getRandomJob() {
+      const title = jobTitles[Math.floor(Math.random() * jobTitles.length)];
+      const company = companies[Math.floor(Math.random() * companies.length)];
+      const location = locations[Math.floor(Math.random() * locations.length)];
+      const type = jobTypes[Math.floor(Math.random() * jobTypes.length)];
+      const salary = `$${(Math.floor(Math.random() * 10) + 5) * 10000} - $${(Math.floor(Math.random() * 10) + 10) * 10000}`;
+      return { title, company, location, type, salary };
+    }
+
+    // Generate random notification
+    function getRandomNotification() {
+      const type = notificationTypes[Math.floor(Math.random() * notificationTypes.length)];
+      const name = getRandomName();
+      const company = companies[Math.floor(Math.random() * companies.length)];
+      const time = `${Math.floor(Math.random() * 12) + 1}h ago`;
+      return { icon: type.icon, text: type.text, name, company, time };
+    }
+
+    function showSection(section) {
+      const feed = document.getElementById('feed');
+      feed.innerHTML = ''; // clear old content
+
+      if (section === 'home') {
+        // restore home feed
+        feed.innerHTML = `
+          <div class="post-box">
+            <p>Start a post</p>
+            <input type="text" placeholder="Share your thoughts...">
+          </div>
+
+          <div class="post">
+            <div class="post-header">
+              <img src="C:\Users\nil\Downloads\istockphoto-1399788030-612x612.jpg" alt="User" style="width:40px; height:40px; border-radius:50%;">
+                <strong>Sugandha D P</strong>
+                <span>Software Web Developer at TechSolutions</span>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>The knowledge and experience gained will be applied to the continued journey in web development 🚀 Just completed my certification in React and Node.js. Looking forward to applying these skills in real-world projects!</p>
+              <img src="https://media.licdn.com/dms/image/v2/D4D22AQEGQ1cyrfpHTw/feedshare-shrink_2048_1536/B4DZReh3KJHUAo-/0/1736752729826?e=2147483647&v=beta&t=CrGfxOjGEYUvOEiP6aEUwIpk9gQrdx41qh3cIsHUqr4" alt="Post Image">
+            </div>
+            <div class="post-actions">
+              <div><i class="fa fa-thumbs-up"></i> Like</div>
+              <div><i class="fa fa-comment"></i> Comment</div>
+              <div><i class="fa fa-share"></i> Share</div>
+            </div>
+          </div>
+
+          <div class="post">
+            <div class="post-header">
+              <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="User" style="width:40px; height:40px; border-radius:50%;">
+              <div>
+                <strong>Aakashsini Sharma</strong>
+                <span>Data Analyst at DataWorks</span>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>🎉Excited to share!🎉 I have successfully completed my Data Science Internship at DataWorks. Grateful for the opportunity to work with amazing mentors and contribute to meaningful projects. Ready to take on new challenges in the data science field!</p>
+              <img src="https://training-comp-uploads.internshala.com/signup_page_media/data-science-sample-certificate.png?v=4&v=v4" alt="Offer Letter">
+            </div>
+            <div class="post-actions">
+              <div><i class="fa fa-thumbs-up"></i> Like</div>
+              <div><i class="fa fa-comment"></i> Comment</div>
+              <div><i class="fa fa-share"></i> Share</div>
+            </div>
+          </div>
+        `;
+      }
+      else if (section === 'network') {
+        let connections = '';
+        for (let i = 1; i <= 20; i++) {
+          const name = getRandomName();
+          const company = companies[Math.floor(Math.random() * companies.length)];
+          const jobTitle = jobTitles[Math.floor(Math.random() * jobTitles.length)];
+          const mutual = Math.floor(Math.random() * 50) + 1;
+          connections += `
+            <div class="connection">
+              <img src="https://randomuser.me/api/portraits/${Math.random() > 0.5 ? 'men' : 'women'}/${Math.floor(Math.random() * 99) + 1}.jpg" alt="${name}">
+              <div class="connection-content">
+                <strong>${name}</strong>
+                <span>${jobTitle} at ${company}</span>
+              </div>
+              <button class="button">Connect</button>
+            </div>
+          `;
+        }
+        feed.innerHTML = `<h2 class="section-title">My Network</h2>${connections}`;
+      }
+      else if (section === 'jobs') {
+        let jobs = '';
+        for (let i = 1; i <= 15; i++) {
+          const job = getRandomJob();
+          const posted = `${Math.floor(Math.random() * 7) + 1}d ago`;
+          jobs += `
+            <div class="job">
+              <img src="https://picsum.photos/seed/${job.company}/60/60.jpg" alt="${job.company}">
+              <div class="job-content">
+                <strong>${job.title}</strong>
+                <span>${job.company}</span>
+                <div class="job-meta">
+                  <span>${job.location}</span>
+                  <span class="salary">${job.salary}</span>
+                </div>
+                <div class="job-meta">
+                  <span>${job.type}</span>
+                  <span>Posted ${posted}</span>
+                </div>
+              </div>
+              <button class="button">Apply</button>
+            </div>
+          `;
+        }
+        feed.innerHTML = `<h2 class="section-title">Job Listings</h2>${jobs}`;
+      }
+      else if (section === 'messaging') {
+        let chats = '';
+        for (let i = 1; i <= 12; i++) {
+          const name = getRandomName();
+          const company = companies[Math.floor(Math.random() * companies.length)];
+          const message = messagePreviews[Math.floor(Math.random() * messagePreviews.length)];
+          const time = `${Math.floor(Math.random() * 12) + 1}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')} ${Math.random() > 0.5 ? 'AM' : 'PM'}`;
+          const unread = Math.random() > 0.7;
+          chats += `
+            <div class="chat" ${unread ? 'style="background: #e8f5ff;"' : ''}>
+              <img src="https://randomuser.me/api/portraits/${Math.random() > 0.5 ? 'men' : 'women'}/${Math.floor(Math.random() * 99) + 1}.jpg" alt="${name}">
+              <div class="chat-content">
+                <strong>${name}</strong>
+                <span>${message}</span>
+                <div class="chat-meta">${time}</div>
+              </div>
+              ${unread ? '<div class="notification-icon"><i class="fa fa-circle"></i></div>' : ''}
+            </div>
+          `;
+        }
+        feed.innerHTML = `<h2 class="section-title">Messaging</h2>${chats}`;
+      }
+      else if (section === 'notifications') {
+        let notis = '';
+        for (let i = 1; i <= 15; i++) {
+          const notification = getRandomNotification();
+          notis += `
+            <div class="notification">
+              <div class="notification-icon"><i class="fa ${notification.icon}"></i></div>
+              <div class="notification-content">
+                <strong>${notification.text} ${notification.name}</strong>
+                <span>${notification.company}</span>
+                <div class="notification-meta">${notification.time}</div>
+              </div>
+            </div>
+          `;
+        }
+        feed.innerHTML = `<h2 class="section-title">Notifications</h2>${notis}`;
+      }
+      else if (section === 'me') {
+        feed.innerHTML = `
+          <h2 class="section-title">My Profile</h2>
+          <div class="post">
+            <div class="post-header">
+              <img src=""C:\Users\nil\OneDrive\Desktop\Pictures\WhatsApp Image 2023-06-30 at 08.34.48.jpg"" alt="Vinod Reddy">
+              <div>
+                <strong>Vinod Reddy</strong>
+                <span>Freelance SEO, Content Writer</span>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>Experienced SEO specialist and content writer with 5+ years of experience in digital marketing. Passionate about creating engaging content that drives traffic and conversions.</p>
+              <p><strong>Location:</strong> Bengaluru, India</p>
+              <p><strong>Education:</strong> Bachelor's in Marketing, Bangalore University</p>
+              <p><strong>Skills:</strong> SEO, Content Writing, Digital Marketing, Social Media Marketing, Google Analytics</p>
+            </div>
+          </div>
+          <div class="post">
+            <h3 style="margin-top: 0;">Activity</h3>
+            <p>You have 3 pending connection requests</p>
+            <p>Your profile was viewed by 24 people in the last week</p>
+            <p>You have 5 new job recommendations</p>
+          </div>
+          <div class="profile-actions">
+            <button class="button">View Profile</button>
+            <button class="button button-outline">Edit Profile</button>
+            <button class="button button-outline">Share Profile</button>
+          </div>
+        `;
+      }
+    }
+  </script>
 </body>
 </html>
